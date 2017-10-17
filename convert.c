@@ -76,7 +76,8 @@ int main()
     int N, M;
     int i, j = 0;
     double x;
-    double R, G, B, R1, G1, B1;
+    int R, G, B;
+    double R1, G1, B1;
     double H, S, V, H1, S1, V1;
     double Cmax, Cmin, d;
 
@@ -94,11 +95,11 @@ int main()
         for (i == 0 ; i < M ; i++)
         {
             printf("Dati valori pentru R G si B: ");
-            scanf("%lf %lf %lf", &R, &G, &B);
+            scanf("%d %d %d", &R, &G, &B);
 
-            R1 = R / 255;
-            G1 = G / 255;
-            B1 = B / 255;
+            R1 = R / 255.0;
+            G1 = G / 255.0;
+            B1 = B / 255.0;
 
             printf("\n%0.5f %0.5f %0.5f\n\n", R1, G1, B1);
 
@@ -116,13 +117,18 @@ int main()
             else
             {
                 H = getH (Cmax, d, R1, G1, B1);
+                if (H < 0)
+                {
+                    H += 360;
+                    H /= 360;
+                }
             }
 
             S = getS (Cmax, d);
 
             V = Cmax;
 
-            printf("%.5f %.5f %.5f\n", H, S, V);
+            printf("H = %.5f S = %.5f V = %.5f\n\n", H, S, V);
 
 
             switch (c)
@@ -158,7 +164,7 @@ int main()
                 
             }
 
-            printf("%0.5f %0.5f %0.5f\n", H1, S1, V1);
+            printf("H1 = %0.5f S1 = %0.5f V1 = %0.5f\n", H1, S1, V1);
 
         }
     
