@@ -3,15 +3,15 @@
 
 double max (double R1, double G1, double B1)
 {
-    if ( (R1 > G1 > B1) || (R1 > B1 > G1) )
+    if ( ( (R1 > G1) && (G1 > B1) ) || ( (R1 > B1) && (B1 > G1) ) )
     {
         return R1;
     }
-    if ( (G1 > B1 > R1) || (G1 > R1 > B1) ) // intoarce booleana
+    if ( ( (G1 > R1) && (R1 > B1) ) || ( (G1 > B1) && (B1 > R1) )) // intoarce booleana
     {
         return G1;
     }
-    if ( (B1 > G1 > R1) || (B1 > R1 > G1) )
+    if ( ( (B1 > G1) && (G1 > R1) ) || ( (B1 > R1) && (R1 > G1) ) )
     {
         return B1;
     }
@@ -19,15 +19,15 @@ double max (double R1, double G1, double B1)
 
 double min (double R1, double G1, double B1)
 {
-    if ( (R1 < G1 < B1) || (R1 < B1 < G1) )
+    if ( ( (R1 < G1) && (G1 < B1) ) || ( (R1 < B1) && (B1 < G1) ) )
     {
         return R1;
     }
-    if ( (G1 < R1 < B1) || (G1 < B1 < R1) )
+    if ( ( (G1 < R1) && (R1 < B1) ) || ( (G1 < B1) && (B1 < R1) ) )
     {
         return G1;
     }
-    if ( (B1 < G1 < R1) || (B1 < R1 < G1) )
+    if ( ( (B1 < G1) && (G1 < R1) ) || ( (B1 < R1) && (R1 < G1) ) )
     {
         return B1;
     }
