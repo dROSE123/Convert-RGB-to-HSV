@@ -1,79 +1,33 @@
 #include<stdio.h>
 
-double Max (double R1, double G1, double B1)
+float max (float a, float b, float c)
 {
-    if (R1 > G1)
+    if ( (a >= b) && (a >= c) )
     {
-        if (G1 > B1)
-        {
-            return R1;
-        }
-        else
-        {
-            return R1;
-        }
+        return a;
     }
-
-    if (G1 > R1)
+    if ( (b >= a) && (b >= c) )
     {
-        if (R1 > B1)
-        {
-            return G1;
-        }
-        else
-        {
-            return G1;
-        }
+        return b;
     }
-
-    if (B1 > R1)
+    if ( (c >= a) && (c >= b) )
     {
-        if (R1 > G1)
-        {
-            return B1;
-        }
-        else
-        {
-            return B1;
-        }
+        return c;
     }
 }
 
-double Min (double R1, double G1, double B1)
+float min (float a, float b, float c)
 {
-    if (R1 < G1)
+    if ( (a <= b) && (a <= c) )
     {
-        if (G1 < B1)
-        {
-            return R1;
-        }
-        else
-        {
-            return R1;
-        }
+        return a;
     }
-
-    if (G1 < R1)
+    if ( (b <= a) && (b <= c) )
     {
-        if (R1 < B1)
-        {
-            return G1;
-        }
-        else
-        {
-            return G1;
-        }
+        return b;
     }
-
-    if (B1 < R1)
+    if ( (c <= a) && (c <= b) )
     {
-        if (R1 < G1)
-        {
-            return B1;
-        }
-        else
-        {
-            return B1;
-        }
+        return c;
     }
 }

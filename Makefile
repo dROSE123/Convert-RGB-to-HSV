@@ -1,11 +1,11 @@
-all: convert.o MaxMin.h.gch
-	gcc convert.o MaxMin.h -o gitHub
+all: convert.o MaxMin.h
+	gcc convert.o MaxMin.h -lm -o gitHub
 
-convert.o: convert.c MaxMin.h.gch
+convert.o: convert.c MaxMin.h
 	gcc -c convert.c
 
-MaxMin.h.gch: MaxMin.h
+MaxMin.h:
 	gcc -c MaxMin.h
 
 clean:
-	rm *.o *.gch 
+	rm *.o *.gch gitHub 

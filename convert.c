@@ -2,40 +2,6 @@
 #include<math.h>
 #include"MaxMin.h"
 
-/*
-double max (double R1, double G1, double B1)
-{
-    if ( ( (R1 > G1) && (G1 > B1) ) || ( (R1 > B1) && (B1 > G1) ) )
-    {
-        return R1;
-    }
-    if ( ( (G1 > R1) && (R1 > B1) ) || ( (G1 > B1) && (B1 > R1) )) 
-    {
-        return G1;
-    }
-    if ( ( (B1 > G1) && (G1 > R1) ) || ( (B1 > R1) && (R1 > G1) ) )
-    {
-        return B1;
-    }
-}
-
-double min (double R1, double G1, double B1)
-{
-    if ( ( (R1 < G1) && (G1 < B1) ) || ( (R1 < B1) && (B1 < G1) ) )
-    {
-        return R1;
-    }
-    if ( ( (G1 < R1) && (R1 < B1) ) || ( (G1 < B1) && (B1 < R1) ) )
-    {
-        return G1;
-    }
-    if ( ( (B1 < G1) && (G1 < R1) ) || ( (B1 < R1) && (R1 < G1) ) )
-    {
-        return B1;
-    }
-}
-*/
-
 double getH (double Cmax, double d, double R1, double G1, double B1)
 {
     double H;
@@ -77,40 +43,31 @@ int main()
 {
     char c;
     int N, M;
-    int i, j = 0;
-    double x;
+    unsigned int i;
+    float x;
     int R, G, B;
-    double R1, G1, B1;
-    double H, S, V, H1, S1, V1;
-    double Cmax, Cmin, d;
+    float R1, G1, B1;
+    float H, S, V, H1, S1, V1;
+    float Cmax, Cmin, d;
 
-//    printf("Dati latimea, respectiv inaltimea lungimii: ");
     scanf("%d %d", &N, &M);
-
-//    printf("Dati valoare pentru factorul de modoficare a caracteristii: ");
-    scanf("%lf", &x);
-
-//    printf("Alegeti litera prin care se face selectia operatiei aplicate: ");
     scanf(" %c", &c);
-
-    do 
-    {
-        for (i == 0 ; i < N ; i++)
+    scanf("%f", &x);
+    
+    for (i = 0 ; i < N * M ; i++)
         {
- //           printf("Dati valori pentru R G si B: ");
             scanf("%d %d %d", &R, &G, &B);
 
             R1 = R / 255.0;
             G1 = G / 255.0;
             B1 = B / 255.0;
 
-//            printf("\n%0.5f %0.5f %0.5f\n\n", R1, G1, B1);
+            Cmax = max(R1, G1, B1);
+            Cmin = min(R1, G1, B1);
 
-            Cmax = Max(R1, G1, B1);
-            Cmin = Min(R1, G1, B1);
             d = Cmax - Cmin;
 
- //           printf("Max: %0.5f\nMin: %0.5f\ndelta: %0.5f\n\n", Cmax, Cmin, d);
+// In functie de d, Cmax si Cmin am calculat valoarea lui H, S, V
 
             if (d == 0)
             {
@@ -121,25 +78,16 @@ int main()
                 H = getH (Cmax, d, R1, G1, B1);
                 if (H < 0)
                 {
-                    H += 360;
-                    H /= 360;
-                }
-                if (H > 1)
-                {
-                    H /= 360;
+                    H = H + 360.0;
                 }
             }
+            H /= 360;
 
             S = getS (Cmax, d);
-            if (S > 1)
-            {
-                S /= 360;
-            }
-
+            
             V = Cmax;
 
-  //          printf("H = %.5f S = %.5f V = %.5f\n\n", H, S, V);
-
+// In functie de valoarea caracterului c am calculat noile valori ale lui H, S, V
 
             switch (c)
             {
@@ -165,25 +113,31 @@ int main()
                     S1 = S;
                     V1 = V * x;
                     break;
-                }
+                }               
+            }
 
-                default:
-                {
-                    break;
-                }
-                
+            if (H1 < 0)
+            {
+                H1 = 0;
+            }
+
+            if (H1 > 1)
+            {
+                H1 = 1;
+            }
+
+            if (S1 > 1)
+            {
+                S1 = 1;
+            }
+
+            if (V1 > 1)
+            {
+                V1 = 1;
             }
 
             printf("%0.5f %0.5f %0.5f\n", H1, S1, V1);
-
+            
         }
-    
-        j++;
-    }
-    while (j <= M);
-
-//    printf("%d %d %d %c", N, M, x, c);
-
-
-    return 0;
+        return 0;
 }
